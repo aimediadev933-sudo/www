@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asi@Connect - A Digital Bridge Across Asia</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23003399'/><circle cx='50' cy='50' r='35' fill='%23ffa726'/><text x='50' y='58' text-anchor='middle' font-family='Arial' font-size='20' font-weight='bold' fill='white'>A</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #003399 0%, #0066cc 100%);
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ff6b9d;stop-opacity:0.1" /><stop offset="50%" style="stop-color:%23ffa726;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%237b1fa2;stop-opacity:0.1" /></linearGradient></defs><circle cx="100" cy="100" r="80" fill="url(%23grad1)"/><circle cx="300" cy="150" r="60" fill="url(%23grad1)"/><circle cx="800" cy="80" r="100" fill="url(%23grad1)"/><circle cx="1000" cy="200" r="70" fill="url(%23grad1)"/></svg>') no-repeat;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        nav {
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .eu-logo {
+            height: 40px;
+        }
+
+        .asiaconnect-logo {
+            height: 50px;
+        }
+
+        .tein-logo-img {
+            height: 45px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-menu li a:hover {
+            background: rgba(255, 167, 38, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 51, 153, 0.9) 0%, rgba(123, 31, 162, 0.85) 50%, rgba(255, 107, 157, 0.85) 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 700"><defs><linearGradient id="mapGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.15"/><stop offset="100%" style="stop-color:%23ffffff;stop-opacity:0.05"/></linearGradient></defs><g opacity="0.25"><path d="M 200 150 L 250 120 L 300 140 L 320 100 L 380 110 L 420 90 L 480 120 L 520 100 L 580 130 L 620 110 L 680 140 L 720 120 L 780 150 L 820 130 L 880 160 L 920 140 L 980 170 L 1020 150 L 1080 180 L 1120 160 L 1160 190 L 1180 170 L 1200 200 L 1180 240 L 1200 280 L 1180 320 L 1150 360 L 1120 400 L 1080 420 L 1040 450 L 1000 470 L 960 490 L 920 510 L 880 520 L 840 510 L 800 490 L 760 470 L 720 480 L 680 460 L 640 450 L 600 440 L 560 450 L 520 460 L 480 450 L 440 440 L 400 450 L 360 460 L 320 450 L 280 440 L 240 430 L 200 420 L 180 380 L 160 340 L 150 300 L 140 260 L 150 220 L 170 180 Z" fill="url(%23mapGrad)" stroke="%23ffffff" stroke-width="2"/><circle cx="400" cy="280" r="8" fill="%23ffa726" opacity="0.8"/><circle cx="650" cy="250" r="8" fill="%23ffa726" opacity="0.8"/><circle cx="850" cy="300" r="8" fill="%23ffa726" opacity="0.8"/><circle cx="500" cy="350" r="8" fill="%23ffa726" opacity="0.8"/><circle cx="750" cy="380" r="8" fill="%23ffa726" opacity="0.8"/><circle cx="950" cy="280" r="8" fill="%23ffa726" opacity="0.8"/><line x1="400" y1="280" x2="650" y2="250" stroke="%23ffffff" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,5"/><line x1="650" y1="250" x2="850" y2="300" stroke="%23ffffff" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,5"/><line x1="400" y1="280" x2="500" y2="350" stroke="%23ffffff" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,5"/><line x1="650" y1="250" x2="750" y2="380" stroke="%23ffffff" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,5"/><line x1="850" y1="300" x2="950" y2="280" stroke="%23ffffff" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,5"/></g><g opacity="0.15"><circle cx="250" cy="200" r="100" fill="%23ff6b9d"/><circle cx="1100" cy="250" r="120" fill="%23ffa726"/><circle cx="600" cy="500" r="90" fill="%237b1fa2"/><circle cx="950" cy="450" r="80" fill="%23ff6b9d"/></g></svg>');
+            background-size: cover;
+            background-position: center right;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ffa726, #ff6b9d);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 167, 38, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 167, 38, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #003399;
+            transform: translateY(-3px);
+        }
+
+        .features {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+        }
+
+        .network-topology {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #ffffff, #f0f4f8);
+        }
+
+        .topology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .topology-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e8eef5;
+        }
+
+        .topology-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .topology-card h3 {
+            font-size: 1.5rem;
+            color: #003399;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .topology-image-container {
+            width: 100%;
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 450px;
+            border: 2px solid #e8eef5;
+        }
+
+        .topology-image {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            border-radius: 10px;
+            object-fit: contain;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .topology-card p {
+            color: #666;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #003399;
+            margin-bottom: 20px;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #ffa726, #7b1fa2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #ffa726, #ff6b9d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #003399;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .partners {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #7b1fa2, #003399);
+            color: white;
+        }
+
+        .partners-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .network-partners-grid {
+            display: flex;
+            gap: 30px;
+            margin-top: 50px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 20px 0;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .network-partners-grid::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .network-partners-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .network-partners-grid::-webkit-scrollbar-thumb {
+            background: rgba(255, 167, 38, 0.6);
+            border-radius: 10px;
+        }
+
+        .network-partners-grid::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 167, 38, 0.8);
+        }
+
+        .partner-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            min-height: 180px;
+            min-width: 200px;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .partner-flag {
+            width: 60px;
+            height: 40px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            object-fit: cover;
+        }
+
+        .partner-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #003399;
+            text-align: center;
+        }
+
+        .partner-country {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+
+        .main-partners-section {
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .main-partners-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .main-partner-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 25px 35px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            min-width: 200px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-partner-logo:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-partner-logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #ffa726;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section li {
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ffa726;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .topology-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .topology-image-container {
+                min-height: 300px;
+                padding: 15px;
+            }
+
+            .network-partners-grid {
+                gap: 20px;
+            }
+
+            .partner-card {
+                padding: 20px;
+                min-height: 150px;
+                min-width: 180px;
+            }
+
+            .partner-flag {
+                width: 50px;
+                height: 33px;
+            }
+
+            .partner-name {
+                font-size: 1rem;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-bg"></div>
+        <nav>
+            <div class="container">
+                <div class="nav-container">
+                    <div class="logo-section">
+                        <img src="images/logos/eu-logo.png" alt="European Union" class="logo-img eu-logo">
+                        <img src="images/logos/asia-connect-logo.png" alt="Asi@Connect" class="logo-img asiaconnect-logo">
+                        <img src="images/logos/tein-logo.png" alt="TEIN CC" class="logo-img tein-logo-img">
+                    </div>
+                    <ul class="nav-menu">
+                        <li><a href="http://about.asiaconnect.online/" target="_blank">About</a></li>
+                        <li><a href="https://wp2.asiaconnect.online/" target="_blank">WP2</a></li>
+                        <li><a href="http://wp3.asiaconnect.online/" target="_blank">WP3</a></li>
+                        <li><a href="http://wp4.asiaconnect.online/" target="_blank">WP4</a></li>
+                        <li><a href="https://wp5.asiaconnect.online/" target="_blank">WP5</a></li>
+                        <li><a href="http://wp6.asiaconnect.online/" target="_blank">WP6</a></li>
+                        <li><a href="https://targetcall.asiaconnect.online/" target="_blank">Targeted Call</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1>A DIGITAL BRIDGE<br>ACROSS ASIA</h1>
+                <p class="subtitle">THE VISION AND IMPACT OF Asi@Connect</p>
+                <p class="description">
+                    Connecting Asia through advanced digital infrastructure, fostering collaboration, 
+                    innovation, and knowledge sharing across the continent. Building bridges that 
+                    transcend borders and unite communities through technology.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#learn-more" class="btn btn-primary">Explore Our Mission</a>
+                    <a href="#partners" class="btn btn-secondary">Meet Our Partners</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="learn-more">
+        <div class="container">
+            <div class="section-title">
+                <h2>Transforming Digital Connectivity</h2>
+                <p>Asi@Connect is revolutionizing how Asia connects, collaborates, and innovates through cutting-edge digital infrastructure and partnerships.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card floating">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Digital Infrastructure</h3>
+                    <p>Building robust, scalable digital networks that connect research institutions, universities, and innovation hubs across Asia.</p>
+                </div>
+                <div class="feature-card floating" style="animation-delay: 0.2s;">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Cross-Border Collaboration</h3>
+                    <p>Facilitating seamless cooperation between Asian countries, enabling knowledge transfer and joint research initiatives.</p>
+                </div>
+                <div class="feature-card floating" style="animation-delay: 0.4s;">
+                    <div class="feature-icon">💡</div>
+                    <h3>Innovation Hub</h3>
+                    <p>Creating a platform for innovative solutions, supporting startups, researchers, and entrepreneurs across the region.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="partners" id="partners">
+        <div class="partners-container">
+            <div class="section-title">
+                <h2 style="color: white;">Partners Across Asia-Pacific</h2>
+                <p style="color: rgba(255,255,255,0.8);">Connecting research and education networks from 20+ countries</p>
+            </div>
+            
+            <div class="network-partners-grid">
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/au.png" alt="Australia Flag" class="partner-flag">
+                    <div class="partner-name">AARNet</div>
+                    <div class="partner-country">Australia</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/bd.png" alt="Bangladesh Flag" class="partner-flag">
+                    <div class="partner-name">BdREN</div>
+                    <div class="partner-country">Bangladesh</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/sg.png" alt="Singapore Flag" class="partner-flag">
+                    <div class="partner-name">GovTech</div>
+                    <div class="partner-country">Singapore</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/cn.png" alt="China Flag" class="partner-flag">
+                    <div class="partner-name">CERNET</div>
+                    <div class="partner-country">China</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/cn.png" alt="China Flag" class="partner-flag">
+                    <div class="partner-name">CSTNET</div>
+                    <div class="partner-country">China</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/hk.png" alt="Hong Kong Flag" class="partner-flag">
+                    <div class="partner-name">HARNET</div>
+                    <div class="partner-country">Hong Kong</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/id.png" alt="Indonesia Flag" class="partner-flag">
+                    <div class="partner-name">ITB/INHERENT</div>
+                    <div class="partner-country">Indonesia</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/in.png" alt="India Flag" class="partner-flag">
+                    <div class="partner-name">NKN</div>
+                    <div class="partner-country">India</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/jp.png" alt="Japan Flag" class="partner-flag">
+                    <div class="partner-name">NICT</div>
+                    <div class="partner-country">Japan</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/jp.png" alt="Japan Flag" class="partner-flag">
+                    <div class="partner-name">NII</div>
+                    <div class="partner-country">Japan</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/jp.png" alt="Japan Flag" class="partner-flag">
+                    <div class="partner-name">MAFFIN</div>
+                    <div class="partner-country">Japan</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/my.png" alt="Malaysia Flag" class="partner-flag">
+                    <div class="partner-name">MYREN</div>
+                    <div class="partner-country">Malaysia</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/kh.png" alt="Cambodia Flag" class="partner-flag">
+                    <div class="partner-name">ITC</div>
+                    <div class="partner-country">Cambodia</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/mn.png" alt="Mongolia Flag" class="partner-flag">
+                    <div class="partner-name">ErdemNet</div>
+                    <div class="partner-country">Mongolia</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/np.png" alt="Nepal Flag" class="partner-flag">
+                    <div class="partner-name">NREN</div>
+                    <div class="partner-country">Nepal</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/nz.png" alt="New Zealand Flag" class="partner-flag">
+                    <div class="partner-name">REANNZ</div>
+                    <div class="partner-country">New Zealand</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/ph.png" alt="Philippines Flag" class="partner-flag">
+                    <div class="partner-name">ASTI</div>
+                    <div class="partner-country">Philippines</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/pk.png" alt="Pakistan Flag" class="partner-flag">
+                    <div class="partner-name">PERN</div>
+                    <div class="partner-country">Pakistan</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/kr.png" alt="South Korea Flag" class="partner-flag">
+                    <div class="partner-name">NIA</div>
+                    <div class="partner-country">South Korea</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/la.png" alt="Laos Flag" class="partner-flag">
+                    <div class="partner-name">LERNET</div>
+                    <div class="partner-country">Laos</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/lk.png" alt="Sri Lanka Flag" class="partner-flag">
+                    <div class="partner-name">LEARN</div>
+                    <div class="partner-country">Sri Lanka</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/sg.png" alt="Singapore Flag" class="partner-flag">
+                    <div class="partner-name">SingAREN</div>
+                    <div class="partner-country">Singapore</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/th.png" alt="Thailand Flag" class="partner-flag">
+                    <div class="partner-name">ThaiREN</div>
+                    <div class="partner-country">Thailand</div>
+                </div>
+
+                <div class="partner-card">
+                    <img src="https://flagcdn.com/w160/vn.png" alt="Vietnam Flag" class="partner-flag">
+                    <div class="partner-name">VinaREN</div>
+                    <div class="partner-country">Vietnam</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Asi@Connect</h3>
+                    <p>Building digital bridges across Asia, connecting communities, fostering innovation, and enabling collaboration through advanced telecommunications infrastructure.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="http://about.asiaconnect.online/" target="_blank">About Us</a></li>
+                        <li>Projects</li>
+                        <li>News & Updates</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Work Packages</h3>
+                    <ul>
+                        <li>WP2 - Infrastructure</li>
+                        <li>WP3 - Collaboration</li>
+                        <li>WP4 - Innovation</li>
+                        <li>WP5 - Research</li>
+                        <li>WP6 - Outreach</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>TEIN Cooperation Center (TEIN*CC)<br>
+                    Seoul, Republic of Korea<br>
+                    Email: info@tein.asia<br>
+                    Web: https://asiaconnect.online/</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Asi@Connect. Funded by the European Union. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .partner-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
